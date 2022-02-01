@@ -1,0 +1,108 @@
+<% layout('/layouts/boilerplates') %>
+<!-- <link rel="stylesheet" href="./layouts/stars.css"> -->
+<!-- <head><link rel="stylesheet" href="stylesheets/stars.css"></head> -->
+
+
+<div class="row">
+    <div class="col-md-6 mt-4 mb-3">
+      <div class="card">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% campg.image.forEach((img,i)=>{ %> 
+            <div class="carousel-item <%= i===0 ? 'active': '' %> ">
+              <img src="<%= img.url %> " class="d-block w-100" alt="">
+            </div>
+          <% }) %> 
+          <% if(campg.image.length >1){ %> 
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+          <% } %> 
+        </div>
+        </div>
+       
+        
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= campg.title %>
+          </h5>
+          <p class="card-text">
+            <%= campg.description %>
+          </p>
+
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><span class="text-muted">
+              <%= campg.location %>
+            </span></li>
+          <li class="list-group-item">Submited by:-<%= campg.author.username %>
+          </li>
+
+          <li class="list-group-item">$<%= campg.price %>/night </li>
+
+        </ul>
+        <div class="card-body">
+
+          <a class="card-link btn btn-info" href="/campground">Back to all campground</a>
+
+        </div>
+        <% if(currentUser && campg.author.equals(currentUser._id)){ %> 
+        <div class="card-body"> 
+          
+          <a class="card-link btn btn-success" href="/campground/<%= campg._id %>/edit ">Click to
+            Edit</a>
+          <form action="/campground/<%= campg._id %>?_method=DELETE" method="post">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </div><% } %> 
+      </div>
+
+
+    </div>
+    <div class="col-6 mt-4 mb-3">
+      <h1>Leave a Review</h1>
+      <form action="/campground/<%= campg._id %>/review" method="post">
+        <div>
+          <label for="rating" class="form-lable">Give Rating</label>
+          <input type="range" min="1" max="5" class="form-range" id="rating" name="rating">
+        </div>
+       
+        <div>
+          <label for="body" class="form-lable">Write Review</label>
+          <textarea class="form-control" name="body" id="body" cols="30" rows="5"></textarea>
+
+          <button class="btn btn-success">Submit</button>
+        </div>
+      </form>
+
+      <div>
+       
+        <% for (let c of campg.review){ %>
+          <div class="card mt-2 mb-2">
+            <div class="card-body  ">
+              <h5 class="card-title">
+                Review:<%= c.rating %>
+              </h5>
+              <h3  >Rated element name</h3>
+              <p class="starability-result" data-rating="4">
+                Rated: 3 stars
+              </p>
+              <p class="card-text">
+                <%= c.body %>
+              </p>
+              <form action="/campground/<%= campg._id %>/review/<%= c._id %>?_method=DELETE " method="post">
+                <button class="btn btn-danger">Delete</button>
+              </form>
+            </div>
+
+          </div>
+
+          <% } %>
+      </div>
+    </div>
+  </div>

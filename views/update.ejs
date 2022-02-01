@@ -1,0 +1,61 @@
+<% layout('/layouts/boilerplates') %>
+
+
+    <div class="row">
+        <div class=" col-6 offset-3 mb-3">
+            <h1>Add new campground</h1>
+            <form action="/campground/<%= element._id %>?_method=PUT " method="post" novalidate
+                class="needs-validation" enctype="multipart/form-data">
+
+                <div class="  mb-3">
+                    <label for="title" class="form-label">Enter Title</label>
+                    <input type="text" class="form-control" id="title" name='title' value="<%= element.title %>"
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div><label for="price" class="form-label">Price</label>
+                <div class="input-group mb-3">
+
+                    <span class="input-group-text" id="someid">$</span>
+                    <input type="text" class="form-control" value="<%= element.price %> " aria-label="Username"
+                        aria-describedby="basic-addon1" id="price" name="price" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="  mb-3">
+                    <label for="location" class="form-label">Enter Location</label>
+                    <input type="text" class="form-control" id="location" name='location'
+                        value="<%= element.location %> " required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div>
+                    <input type="file" name="image" id="image" multiple>
+                </div>
+                <!-- <div class="  mb-3">
+                    <label for="image" class="form-label">Enter image url</label>
+                    <input type="text" class="form-control" id="image" value="<%= element.image %> " name='image'
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div> -->
+                <div class="  mb-3">
+                    <label for="description" class="form-label">Enter description</label>
+                    <textarea class="form-control" required id="description"
+                        name='description'><%= element.description %> </textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3"><button class="btn btn-success col-3 offset-4 mb-3 ">Update</button></div>
+
+                <a href="/campground/<%= element._id %> ">Back</a>
+
+            </form>
+        </div>
+    </div>

@@ -1,0 +1,56 @@
+<% layout('/layouts/boilerplates') %>
+    <div class="row">
+        <div class=" col-6 offset-3 mb-3">
+            <h1>Add new campground</h1>
+            <form action="/campground" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+
+                <div class="  mb-3">
+                    <label for="title" class="form-label">Enter Title</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter title" name='title' required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div><label for="price" class="form-label">Price</label>
+                <div class="input-group mb-3">
+
+                    <span class="input-group-text" id="someid">$</span>
+                    <input type="text" class="form-control" placeholder="0.00" aria-label="Username"
+                        aria-describedby="basic-addon1" id="price" name="price" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="  mb-3">
+                    <label for="location" class="form-label">Enter Location</label>
+                    <input type="text" class="form-control" id="location" placeholder="Enter Location" name='location'
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div>
+                    <input type="file" name="image" id="image" multiple>
+                </div>
+                <!-- <div class="  mb-3">
+                    <label for="image" class="form-label">Enter image url</label>
+                    <input type="text" class="form-control" id="image" placeholder="Enter image" name='image' required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div> -->
+               
+                <div class="  mb-3">
+                    <label for="description" class="form-label">Enter description</label>
+                    <textarea class="form-control" id="description" name='description' required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3"><button class="btn btn-success col-3 offset-4 mb-3 ">Submit</button></div>
+
+            </div> 
+
+            </form>
+        </div>
+    </div>
+    
